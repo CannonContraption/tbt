@@ -28,15 +28,15 @@ desk, I might do so like this:
 
 	10m	Sort desk contents into piles
 	10m	sort papers (by rough type)
-	20m Go through papers to keep
+	20m	Go through papers to keep
 	5m	Move recycle to bin
 	5m	Cable wrap wires
 	5m	sort tools/put away
 	5m	Remove computer, monitors
-	10m clear off remainder of desk
-	10m Carefully clean surface
+	10m	clear off remainder of desk
+	10m	Carefully clean surface
 	10m	Rewire computer
-	15m redo layout on desk
+	15m	redo layout on desk
 
 and the program would return a neatly formatted schedule. Note the time starts
 at 12:44AM (00:44) (That's what time it was when I ran this example) and counts
@@ -65,6 +65,10 @@ finished something sooner than you had hoped, no big deal, go back into the
 file with your tasks, remove the lines for things you've finished, and run tbt
 again with your changes in place and you'll have a new set of time targets. No
 paper wasted.
+
+Note that the input syntax is quite rigid, the program won't parse your file 
+right if you use spaces instead of tabs (\t) between the time estimation and
+description.
 
 ## Advanced Syntax
 
