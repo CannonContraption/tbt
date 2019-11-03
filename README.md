@@ -65,3 +65,22 @@ finished something sooner than you had hoped, no big deal, go back into the
 file with your tasks, remove the lines for things you've finished, and run tbt
 again with your changes in place and you'll have a new set of time targets. No
 paper wasted.
+
+## Advanced Syntax
+
+The input file supports multiple input units. For example, you aren't just
+limited to minutes, if you have a project in hours, you could write the line
+
+    4h	Really Really long task
+
+or in days (mostly unsupported since the time indicator does not roll over for
+now)
+
+    7d	Vacation. Stop looking at your tasks already.
+
+## Planned features
+
+Eventually, I want this to also include a simple shtbt interface (cli rather
+than a command), and along with that commands to add items to a file and remove
+completed ones as they get finished so that the list is always up to date and
+current with expectations.
