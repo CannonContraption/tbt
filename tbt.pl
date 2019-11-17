@@ -111,8 +111,9 @@ READALINE: while ( ! eof ($filehandler) )
     $totalminutes += $fromlast;
 }
 
-my $totalhours = int($totalminutes / 60);
+my $totaldays  = int(($totalminutes / 60) / 24);
+my $totalhours = int(($totalminutes / 60) % 24);
 $totalminutes  = int($totalminutes % 60);
-print "\n\033[1;36mThis list has a total estimated completion time of $totalhours:$totalminutes.\033[m\n";
+print "\n\033[1;36mThis list has a total estimated completion time of $totaldays days, $totalhours:$totalminutes.\033[m\n";
 
 close($filehandler);
