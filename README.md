@@ -77,8 +77,7 @@ limited to minutes, if you have a project in hours, you could write the line
 
     4h	Really Really long task
 
-or in days (mostly unsupported since the time indicator does not roll over for
-now)
+or in days
 
     7d	Vacation. Stop looking at your tasks already.
 
