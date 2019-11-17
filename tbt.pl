@@ -28,14 +28,15 @@ chomp $currenttime;
 # program isn't designed to beep when it's time, just print out time values,
 # therefore this is all we really need to do.
 my @timesplit    = split(/:/, $currenttime); # minutes in [1], hours in [0]. Like a clock.
+my $days = 0; # Support wrapping across a single day to plan a week out
 
 # Print our table headers
-print "\033[7;33m                                    │ Description                  ░░▒▒▓▓",
+print "\033[7;33m                                          │ Description                  ░░▒▒▓▓",
     "\r                           │ Time",
     "\r             │ Duration",
     "\r      │ in",
     "\rNo.\n\033[m";
-print "──────┼──────┼─────────────┼────────┼────────────────────────────────╌╌┄┈\n";
+print "──────┼──────┼─────────────┼──────────────┼────────────────────────────────╌╌┄┈\n";
 # Now we can read and parse the input file with the todos we have for today. As they get
 # completed, there can be a function to strip the first line of the file off or
 # something.
@@ -83,18 +84,23 @@ READALINE: while ( ! eof ($filehandler) )
         die("Found a bad line. Make sure line =~ /time[mhd]\\tdescription/");
     }
 
+    # Get rid of blank newlines
     chomp ($splitline[1]);
 
+    # Look for blank description fields and report them
     if ($splitline[1] =~ //)
     {
         die("Found a bad line. Make sure line =~ /time[mhd]\\tdescription/");
     }
-    
+
+    # Report hours and minutes from the last task
     my $hours   = int($fromlast / 60);
     my $minutes = int($fromlast % 60);
+    $days += int($timesplit[0] / 24);
+    $timesplit[0] %= 24;
 
-    print "                                    │ $splitline[1]",
-        "\r                           │ \033[31m$timesplit[0]:$timesplit[1]\033[m",
+    print "                                          │ $splitline[1]",
+        "\r                           │ \033[31m+$days","d, $timesplit[0]:$timesplit[1]\033[m",
         "\r             │ \033[32m($hours h, $minutes m)\033[m",
         "\r      │ \033[33m$totalminutes","m\033[m",
         "\r\033[1;33m$itemno:\n\033[m";
